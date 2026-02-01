@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void print(priority_queue<int> pq)
+// print
+void print(priority_queue<int, vector<int>, greater<int>> pq)
 {
   cout << "Priority queue is like: " << endl;
   while (!pq.empty())
@@ -15,7 +16,7 @@ void print(priority_queue<int> pq)
 
 int main()
 {
-  priority_queue<int> pq; // by default max-heap
+  priority_queue<int, vector<int>, greater<int>> pq;
 
   // insert
   pq.push(10);
@@ -25,19 +26,6 @@ int main()
 
   print(pq);
 
-  // delete
   pq.pop();
   print(pq);
-
-  // check empty
-  if (pq.empty())
-  {
-    cout << "queue is empty" << endl;
-  }
-
-  // size
-  cout << "size: " << pq.size() << endl;
-
-  // top element
-  cout << "Top element: " << pq.top() << endl;
 }
