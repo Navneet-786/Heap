@@ -90,7 +90,7 @@ int main()
   h1.print();
 
   cout << endl
-       << "after deleteion" << endl;
+       << "after deletion" << endl;
   h1.deleteNode();
   h1.print();
 }
