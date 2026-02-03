@@ -11,32 +11,39 @@ class Node {
 };
 */
 
-class Comparator{
-    public:
-        bool operator()(Node* a, Node* b){
-            return a->data > b->data;
-        }
-};
+
 class Solution {
   public:
+ struct Comparator {
+    bool operator()(Node* a, Node* b) {
+        return a->data > b->data; // MIN HEAP
+    }
+};
     Node* mergeKLists(vector<Node*>& arr) {
-        priority_queue<Node*,vector<Node*>, Comparator> pq(arr.begin(),arr.end());//O(n)
+       //put all element in priority queueu(min heap)
+       priority_queue<Node*,
+                    vector<Node*>,
+                    Comparator>q(arr.begin(),arr.end());
+                    
+        Node* root = new Node(-1);
+        Node* currNode = root;
         
-        Node* head = new Node(0);
-        Node* tail = head;
-        while(!pq.empty()){
-            Node* currNode = pq.top();
-            pq.pop();
-            //insert next node if exist
-            if(currNode->next){
-                pq.push(currNode->next);
-            }
+        while(!q.empty()){
             
-            tail->next = currNode;
-            currNode->next = NULL;
-            tail = tail->next;
+            Node* temp = q.top();
+            q.pop();
+            //make it node
+            currNode->next = temp;
+            currNode = currNode->next;
+            
+            //if temp have next Node then insert into queue
+            if(temp->next!=NULL){
+                q.push(temp->next);
+            }
         }
-        return head->next;
+        
+        return root->next;
+        
         
     }
 };
